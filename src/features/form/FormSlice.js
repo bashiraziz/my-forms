@@ -6,9 +6,12 @@ export const initialState = {
   budget: 0,
   percentComplete: 0,  
 }
+const autoState = (state = initialState) => {
+  return state;
+}
 export const formSlice = createSlice({
   name: 'form',
-  state: initialState,
+  initialState: {autoState},
 
   reducers: {
     calculate: state => {
@@ -19,9 +22,9 @@ export const formSlice = createSlice({
       state.percentComplete = state.actual / state.budget;
     },
     handleChange: (state, action) => {
-    let name = e.target.name;
-    let value = e.target.value;
-    state[name] = value;
+    /* let name = action.target.name; */
+    let value = action.target.value; 
+    state.value = value;
     },
     
     incrementByAmount: (state, action) => {
@@ -45,6 +48,6 @@ export const incrementAsync = amount => dispatch => {
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
 // in the slice file. For example: `useSelector((state) => state.counter.value)`
-export const selectCount = state => state.counter.value;
+export const selectCount = state => state.value;
 
 export default formSlice.reducer;
