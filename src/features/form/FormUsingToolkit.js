@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React from 'react';
+// import React, { useState } from 'react';
+// import { useSelector, useDispatch } from 'react-redux';
+import {useDispatch } from 'react-redux';
 import {initialState} from './FormSlice';
 import {
   calculate,
@@ -11,8 +13,12 @@ import styles from './Form.module.css';
 export function Form() {
   /* const count = useSelector(selectCount); */ 
   const dispatch = useDispatch();
-  const [incrementAmount, setIncrementAmount] = useState('2');
-
+   // const [incrementAmount, setIncrementAmount] = useState('2');
+  const handleOnSubmit = (e) => {
+    e.preventDefault();
+      console.log("It worked!!!");
+      dispatch(calculate());
+  }
   return (
 /*     <div>
       <div className={styles.row}>
@@ -56,10 +62,10 @@ export function Form() {
         
 
 <fieldset>
-      <form onSubmit={dispatch.calculate}>
-         Actual <input type="number" name="actual"  onChange= {handleChange}  />
+      <form onSubmit={e => handleOnSubmit(e)}>
+         Actual <input type="number" name="actual"  onChange= {e => dispatch(handleChange({name: e.target.name, value: e.target.value}))}  />
           <br /><br />
-          Budget <input type="number" name="budget"  onChange={handleChange} />
+          Budget <input type="number" name="budget"  onChange= {e => dispatch(handleChange({name: e.target.name, value: e.target.value}))} />
           <br /><br />
           Percent Complete
           <br />
@@ -67,6 +73,7 @@ export function Form() {
           <br />
           <br />
           <input type="submit" name="submit" value="Calculate" align="center" />
+
         </form>
       </fieldset>
       </div>

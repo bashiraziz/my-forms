@@ -38,9 +38,9 @@ function FormUseState() {
 
   return (
     <div>
-      <h5>the new percent complete is {account.description}</h5>
-      <h5>the actual is {account.username}</h5>
-      <h5>the new budget is {account.password}</h5>
+      <h4>the new percent complete is {account.description}</h4>
+      <h4>the actual is {account.username}</h4>
+      <h4>the new budget is {account.password}</h4>
 
 
       <fieldset>

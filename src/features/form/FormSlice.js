@@ -1,34 +1,52 @@
 import { createSlice } from '@reduxjs/toolkit';
+//import {form} from '..../app/store';
 
+  /* export const storeStatus = () => {
+    console.log(store.getState);
+  }; */
 export const initialState = {
   value: 0,
   actual: 0,
   budget: 0,
   percentComplete: 0,  
 }
-const autoState = (state = initialState) => {
+/* const autoState = (state = initialState) => {
   return state;
 }
+ */
+
 export const formSlice = createSlice({
   name: 'form',
-  initialState: {autoState},
+  initialState: initialState,
 
   reducers: {
-    calculate: state => {
+    calculate: (state, action) => {
+      console.log("Calculate is fired");
+      console.log(state.actual); 
       // Redux Toolkit allows us to write "mutating" logic in reducers. It
       // doesn't actually mutate the state because it uses the Immer library,
       // which detects changes to a "draft state" and produces a brand new
       // immutable state based off those changes
       state.percentComplete = state.actual / state.budget;
+      console.log(state.percentComplete);
     },
     handleChange: (state, action) => {
-    /* let name = action.target.name; */
-    let value = action.target.value; 
-    state.value = value;
+    console.log("Type me please");
+
+    let name = action.payload.name; 
+    let value = action.payload.value; 
+    console.log("passed the let");
+    state[name] = value;
+    console.log("passed the state change");
+    console.log(action.payload.name);
+    console.log(action.payload.value);
+    console.log(state[name]);
+    //  console.log(storeStatus);
     },
+
     
     incrementByAmount: (state, action) => {
-      state.value += action.payload;
+      state.value += action.payload.value;
     },
   },
 });

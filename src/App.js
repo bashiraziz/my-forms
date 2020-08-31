@@ -1,6 +1,6 @@
 import React from 'react';
 import logo from './logo.svg';
-import { Counter, Form } from './features/form/FormUsingToolkit';
+import { Form } from './features/form/FormUsingToolkit';
 import './App.css';
 import FormUseState from './hooks/formUseState';
 import FormUseReducer from './hooks/FormUseReducer/formUseReducer';
