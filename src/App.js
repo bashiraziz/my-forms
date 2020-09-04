@@ -10,6 +10,7 @@ function App() {
     <div className="App">
       <header className="App-header">
       <strong><em>Form using Redux Toolkit</em></strong>
+        
         <Form />
         <br></br>
         <br></br>

@@ -1,10 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
+//import App from '../../App';
 //import {form} from '..../app/store';
 
   /* export const storeStatus = () => {
     console.log(store.getState);
   }; */
-export const initialState = {
+export const myState = {
   value: 0,
   actual: 0,
   budget: 0,
@@ -17,31 +18,38 @@ export const initialState = {
 
 export const formSlice = createSlice({
   name: 'form',
-  initialState: initialState,
+  initialState: myState,
 
   reducers: {
-    calculate: (state, action) => {
+    calculate: (state=myState) => {
+      console.log(`Percent Complete before it is calculated= ${myState.percentComplete}`);
       console.log("Calculate is fired");
-      console.log(state.actual); 
+      console.log(`Actual from myState=${myState.actual}`); 
+      console.log(`Budget from myState=${myState.budget}`);
+      console.log(`Actual from state=${state.actual}`); 
+      console.log(`Budget from state=${state.budget}`);
       // Redux Toolkit allows us to write "mutating" logic in reducers. It
       // doesn't actually mutate the state because it uses the Immer library,
       // which detects changes to a "draft state" and produces a brand new
       // immutable state based off those changes
       state.percentComplete = state.actual / state.budget;
-      console.log(state.percentComplete);
+      console.log(`Percent Complete from state= ${state.percentComplete}`);
+      console.log(`Percent Complete from myState  = ${myState.percentComplete}`);
+      //console.log(state.formSlice);
     },
-    handleChange: (state, action) => {
+    handleChange: (state=myState, action) => {
     console.log("Type me please");
 
-    let name = action.payload.name; 
-    let value = action.payload.value; 
+    //let name = action.payload.name; 
+    //let value = action.payload.value;
+    const {name, value}  = action.payload; 
     console.log("passed the let");
     state[name] = value;
     console.log("passed the state change");
-    console.log(action.payload.name);
-    console.log(action.payload.value);
-    console.log(state[name]);
-    //  console.log(storeStatus);
+    console.log(`Actual Amount = ${state.actual}`);
+    console.log(`Budget Amount = ${state.budget}`);
+    //console.log(state[name]);
+    //console.log(store.getStatus);
     },
 
     
@@ -51,7 +59,7 @@ export const formSlice = createSlice({
   },
 });
 
-export const { calculate, handleChange, incrementByAmount } = formSlice.actions;
+export const { calculate, handleChange, incrementByAmount, state } = formSlice.actions;
 
 // The function below is called a thunk and allows us to perform async logic. It
 // can be dispatched like a regular action: `dispatch(incrementAsync(10))`. This
