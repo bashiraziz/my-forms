@@ -5,7 +5,7 @@ import { createSlice } from '@reduxjs/toolkit';
   /* export const storeStatus = () => {
     console.log(store.getState);
   }; */
-export let myState = {
+export const myState = {
   value: 0,
   actual: 0,
   budget: 0,
@@ -21,7 +21,7 @@ export const formSlice = createSlice({
   initialState: myState,
 
   reducers: {
-    calculate: (state = myState) => {
+    calculate: (state=myState) => {
       console.log(`Percent Complete before it is calculated= ${myState.percentComplete}`);
       console.log("Calculate is fired");
       console.log(`Actual from myState=${myState.actual}`); 
@@ -36,9 +36,8 @@ export const formSlice = createSlice({
       console.log(`Percent Complete from state= ${state.percentComplete}`);
       console.log(`Percent Complete from myState  = ${myState.percentComplete}`);
       //console.log(state.formSlice);
-      myState = {...myState, percentComplete: state.percentComplete}
     },
-    handleChange: (state, action) => {
+    handleChange: (state=myState, action) => {
     console.log("Type me please");
 
     //let name = action.payload.name; 

@@ -1,6 +1,7 @@
 import React from 'react';
 // import React, { useState } from 'react';
-import {useDispatch, useSelector } from 'react-redux';
+// import { useSelector, useDispatch } from 'react-redux';
+import {useDispatch } from 'react-redux';
 import {
   calculate,
   handleChange,
@@ -10,7 +11,7 @@ import {
 import styles from './Form.module.css';
 
 export function Form() {
-  useSelector(state => state.form);  
+  /* const count = useSelector(selectCount); */ 
   const dispatch = useDispatch();
    // const [incrementAmount, setIncrementAmount] = useState('2');
   const handleOnSubmit = (e) => {
@@ -19,7 +20,7 @@ export function Form() {
     dispatch(calculate());
       
   }
-  const updatePercentComplete = (state = myState) => {
+  const updatePercentComplete = (state=myState) => {
     console.log("updatePercentComplete fired");
     console.log(state.percentComplete); 
     return state.percentComplete
@@ -42,7 +43,7 @@ export function Form() {
           <br /><br />
           Percent Complete
           <br />
-          <input type="number"  name="percentComplete"  value ={updatePercentComplete()} readOnly></input>
+          <input type="number"  name="percentComplete"   readOnly></input>
           <br />
           <br />
           <input type="submit" name="submit" value="Calculate" align="center" />
